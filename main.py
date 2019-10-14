@@ -1,13 +1,13 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup   #Python library, to pull data out of HTML/XML files
 import smtplib
 import time
 
-URL = input("Enter the amazon URL here ")
-ideal_price = int(input("Enter the price you want it at "))
+URL = input("Enter the Amazon URL here: ")
+ideal_price = int(input("Enter the price you want it at: "))
 emailid = input("Where do you want me to email you? ")
-sender_email = input("Enter the email address from which the notification email is to be sent ")
-sender_pass = input("Enter the password for the email address from which the notification email is to be sent ")
+sender_email = input("Enter the email address from which the notification email is to be sent: ")
+sender_pass = input("Enter the password for the email address from which the notification email is to be sent: ")
 headers = {"User-Agent" : 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 
 def check_price():
@@ -26,11 +26,11 @@ def send_mail():
     server.starttls()
     server.ehlo()
     server.login(sender_email, sender_pass)
-    subject = 'Price Fell Down!'
-    body = 'Price fell down! Check the amazon link'
+    subject = 'Price of your item has fallen!'
+    body = 'The price of your item has fallen! Check the Amazon link for your amazing deal.'
     msg = "Subject: " + subject + "\n\n" + body + URL
     server.sendmail(sender_email, emailid, msg)
-    print("email has been sent!", msg)
+    print("Email has been sent!", msg)
     server.quit()
 
 while (1):
